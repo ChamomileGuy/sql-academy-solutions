@@ -1,0 +1,70 @@
+{
+  "name": "QuestionDB_10075_145_146",
+  "title": "Schedule",
+  "description": "A simple database for CREATE TABLE tasks",
+  "tables": [
+    {
+      "id": "Lessons",
+      "title": "Lessons",
+      "description": "Lessons list",
+      "props": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "is_key": true,
+          "description": "Lesson ID"
+        },
+        {
+          "name": "subject",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Subject name"
+        },
+        {
+          "name": "teacher_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Teacher name"
+        },
+        {
+          "name": "lesson_date",
+          "type": "DATE",
+          "is_key": false,
+          "description": "Lesson date"
+        },
+        {
+          "name": "classroom",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Classroom number"
+        }
+      ]
+    },
+    {
+      "id": "Timepair",
+      "title": "Timepair",
+      "description": "Time slots",
+      "props": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "is_key": true,
+          "description": "Time slot ID"
+        },
+        {
+          "name": "start_time",
+          "type": "TIME",
+          "is_key": false,
+          "description": "Start time"
+        },
+        {
+          "name": "end_time",
+          "type": "TIME",
+          "is_key": false,
+          "description": "End time"
+        }
+      ]
+    }
+  ],
+  "relations": []
+}
