@@ -1,0 +1,227 @@
+{
+  "name": "Airbnb",
+  "title": "Airbnb",
+  "description": "A simplified scheme of service for housing delivery in rent",
+  "tables": [
+    {
+      "id": "users",
+      "title": "Users",
+      "description": "Booking service users",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "First and last name of the user"
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "User's email address"
+        },
+        {
+          "name": "email_verified_at",
+          "type": "DATETIME",
+          "is_key": false,
+          "description": "Date of mail confirmation"
+        },
+        {
+          "name": "password",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Account password"
+        },
+        {
+          "name": "phone_number",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "User's phone number"
+        }
+      ]
+    },
+    {
+      "id": "reservations",
+      "title": "Reservations",
+      "description": "History of room reservations",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "user_id",
+          "type": "INT",
+          "is_key": false,
+          "description": "User ID"
+        },
+        {
+          "name": "room_id",
+          "type": "INT",
+          "is_key": false,
+          "description": "Room ID"
+        },
+        {
+          "name": "start_date",
+          "type": "DATETIME",
+          "is_key": false,
+          "description": "Booking start date"
+        },
+        {
+          "name": "end_date",
+          "type": "DATETIME",
+          "is_key": false,
+          "description": "Booking end date"
+        },
+        {
+          "name": "price",
+          "type": "INT",
+          "is_key": false,
+          "description": "Price per day"
+        },
+        {
+          "name": "total",
+          "type": "INT",
+          "is_key": false,
+          "description": "Total cost of booking"
+        }
+      ]
+    },
+    {
+      "id": "rooms",
+      "title": "Rooms",
+      "description": "Affordable housing options",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "home_type",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Type of housing"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Housing address"
+        },
+        {
+          "name": "has_tv",
+          "type": "BOOLEAN",
+          "is_key": false,
+          "description": "Indicates the presence of a TV"
+        },
+        {
+          "name": "has_internet",
+          "type": "BOOLEAN",
+          "is_key": false,
+          "description": "Indicates the presence of the Internet"
+        },
+        {
+          "name": "has_kitchen",
+          "type": "BOOLEAN",
+          "is_key": false,
+          "description": "Indicates the presence of a kitchen"
+        },
+        {
+          "name": "has_air_con",
+          "type": "BOOLEAN",
+          "is_key": false,
+          "description": "Indicates the presence of an air conditioner"
+        },
+        {
+          "name": "price",
+          "type": "INT",
+          "is_key": false,
+          "description": "Price per day"
+        },
+        {
+          "name": "owner_id",
+          "type": "INT",
+          "is_key": false,
+          "description": "Owner ID (from the Users table)"
+        },
+        {
+          "name": "latitude",
+          "type": "FLOAT",
+          "is_key": false,
+          "description": "Geographical latitude"
+        },
+        {
+          "name": "longitude",
+          "type": "FLOAT",
+          "is_key": false,
+          "description": "Geographical longitude"
+        }
+      ]
+    },
+    {
+      "id": "reviews",
+      "title": "Reviews",
+      "description": "Reviews of rental housing",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "reservation_id",
+          "type": "INT",
+          "is_key": false,
+          "description": "Reservation ID"
+        },
+        {
+          "name": "rating",
+          "type": "INT",
+          "is_key": false,
+          "description": "Rating (from 1 to 5)"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source_table": "reviews",
+      "source_field": "reservation_id",
+      "target_table": "reservations",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "reservations",
+      "source_field": "user_id",
+      "target_table": "users",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "reservations",
+      "source_field": "room_id",
+      "target_table": "rooms",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "rooms",
+      "source_field": "owner_id",
+      "target_table": "users",
+      "target_field": "id",
+      "type": "many-to-one"
+    }
+  ]
+}

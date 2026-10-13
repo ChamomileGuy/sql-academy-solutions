@@ -1,0 +1,262 @@
+{
+  "name": "Schedule",
+  "title": "Schedule",
+  "description": null,
+  "tables": [
+    {
+      "id": "class",
+      "title": "Class",
+      "description": "List of classes in the school",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Class title"
+        }
+      ]
+    },
+    {
+      "id": "schedule",
+      "title": "Schedule",
+      "description": "Class schedule",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "is_key": false,
+          "description": "Date of the lesson"
+        },
+        {
+          "name": "class",
+          "type": "INT",
+          "is_key": false,
+          "description": "Class ID"
+        },
+        {
+          "name": "number_pair",
+          "type": "INT",
+          "is_key": false,
+          "description": "The sequence number of the lesson"
+        },
+        {
+          "name": "teacher",
+          "type": "INT",
+          "is_key": false,
+          "description": "Teacher ID"
+        },
+        {
+          "name": "subject",
+          "type": "INT",
+          "is_key": false,
+          "description": "Subject ID"
+        },
+        {
+          "name": "classroom",
+          "type": "INT",
+          "is_key": false,
+          "description": "Classroom ID"
+        }
+      ]
+    },
+    {
+      "id": "student",
+      "title": "Student",
+      "description": "School students",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "first_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Student's first name"
+        },
+        {
+          "name": "middle_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Student's middle name"
+        },
+        {
+          "name": "last_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Student's last name"
+        },
+        {
+          "name": "birthday",
+          "type": "DATE",
+          "is_key": false,
+          "description": "Student's date of birth"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Student's place of residence"
+        }
+      ]
+    },
+    {
+      "id": "student_in_class",
+      "title": "Student_in_class",
+      "description": "Information about student's class",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "class",
+          "type": "INT",
+          "is_key": false,
+          "description": "Class ID"
+        },
+        {
+          "name": "student",
+          "type": "INT",
+          "is_key": false,
+          "description": "Student ID"
+        }
+      ]
+    },
+    {
+      "id": "subject",
+      "title": "Subject",
+      "description": "List of school subjects",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Subject name"
+        }
+      ]
+    },
+    {
+      "id": "teacher",
+      "title": "Teacher",
+      "description": "List of school teachers",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "first_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Teacher's first name"
+        },
+        {
+          "name": "middle_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Teacher's middle name"
+        },
+        {
+          "name": "last_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Teacher's last name"
+        }
+      ]
+    },
+    {
+      "id": "timepair",
+      "title": "Timepair",
+      "description": "The schedule calls",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "start_pair",
+          "type": "TIME",
+          "is_key": false,
+          "description": "Lesson start time"
+        },
+        {
+          "name": "end_pair",
+          "type": "TIME",
+          "is_key": false,
+          "description": "Lesson end time"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source_table": "schedule",
+      "source_field": "class",
+      "target_table": "class",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "schedule",
+      "source_field": "number_pair",
+      "target_table": "timepair",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "schedule",
+      "source_field": "teacher",
+      "target_table": "teacher",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "schedule",
+      "source_field": "subject",
+      "target_table": "subject",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "student_in_class",
+      "source_field": "class",
+      "target_table": "class",
+      "target_field": "id",
+      "type": "many-to-one"
+    },
+    {
+      "source_table": "student_in_class",
+      "source_field": "student",
+      "target_table": "student",
+      "target_field": "id",
+      "type": "many-to-one"
+    }
+  ]
+}

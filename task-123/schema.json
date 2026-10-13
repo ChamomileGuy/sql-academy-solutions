@@ -1,0 +1,66 @@
+{
+  "name": "QuestionCustomDatabase_123",
+  "title": "Finstar Financial Group",
+  "description": "Finstar Financial Group",
+  "tables": [
+    {
+      "id": "Employee",
+      "title": "Employee",
+      "description": "List of employees",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "emp_name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": null
+        },
+        {
+          "name": "rating",
+          "type": "INT",
+          "is_key": false,
+          "description": null
+        }
+      ]
+    },
+    {
+      "id": "Tasks",
+      "title": "Tasks",
+      "description": "List of tasks",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "assignee_id",
+          "type": "INT",
+          "is_key": false,
+          "description": null
+        },
+        {
+          "name": "rating",
+          "type": "INT",
+          "is_key": false,
+          "description": null
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source_table": "Employee",
+      "source_field": "id",
+      "target_table": "Tasks",
+      "target_field": "assignee_id",
+      "type": "one-to-many"
+    }
+  ]
+}
