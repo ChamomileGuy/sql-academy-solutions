@@ -1,0 +1,148 @@
+{
+  "name": "Airo",
+  "title": "Air travels",
+  "description": "The scheme of air travel, connecting passengers from sold tickets",
+  "tables": [
+    {
+      "id": "company",
+      "title": "Company",
+      "description": "Air travel companies",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Name of the carrier company"
+        }
+      ]
+    },
+    {
+      "id": "passenger",
+      "title": "Passenger",
+      "description": "Passengers who bought a ticket",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Passenger's first and last name"
+        }
+      ]
+    },
+    {
+      "id": "pass_in_trip",
+      "title": "Pass_in_trip",
+      "description": "List of purchased tickets",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "trip",
+          "type": "INT",
+          "is_key": false,
+          "description": "Trip Entity ID"
+        },
+        {
+          "name": "passenger",
+          "type": "INT",
+          "is_key": false,
+          "description": "Passenger Entity ID"
+        },
+        {
+          "name": "place",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Passenger's seat on the plane"
+        }
+      ]
+    },
+    {
+      "id": "trip",
+      "title": "Trip",
+      "description": "Flight schedule",
+      "props": [
+        {
+          "name": "id",
+          "type": "INT",
+          "is_key": true,
+          "description": null
+        },
+        {
+          "name": "company",
+          "type": "INT",
+          "is_key": false,
+          "description": "Name of the carrier company"
+        },
+        {
+          "name": "plane",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Aircraft model"
+        },
+        {
+          "name": "town_from",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Departure city"
+        },
+        {
+          "name": "town_to",
+          "type": "VARCHAR",
+          "is_key": false,
+          "description": "Arrival city"
+        },
+        {
+          "name": "time_out",
+          "type": "DATETIME",
+          "is_key": false,
+          "description": "Departure time"
+        },
+        {
+          "name": "time_in",
+          "type": "DATETIME",
+          "is_key": false,
+          "description": "Arrival time"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source_table": "company",
+      "source_field": "id",
+      "target_table": "trip",
+      "target_field": "company",
+      "type": "one-to-many"
+    },
+    {
+      "source_table": "trip",
+      "source_field": "id",
+      "target_table": "pass_in_trip",
+      "target_field": "trip",
+      "type": "one-to-many"
+    },
+    {
+      "source_table": "passenger",
+      "source_field": "id",
+      "target_table": "pass_in_trip",
+      "target_field": "passenger",
+      "type": "one-to-many"
+    }
+  ]
+}
